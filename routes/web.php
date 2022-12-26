@@ -31,7 +31,7 @@ Route::get('/contact-us', 'HomeController@contactUs')->name('contact-us');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 Route::get('/help', 'HomeController@help')->name('help');
 
-Route::get('/admin', 'HomeController@handleAdmin');
+Route::get('/xotel', 'HomeController@handleAdmin');
 Route::get('/home', 'HomeController@welcomeAdmin')->name('admin.route')->middleware('admin');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

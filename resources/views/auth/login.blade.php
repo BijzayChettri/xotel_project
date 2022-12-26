@@ -1,11 +1,14 @@
 @extends('layouts.app')
-
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+ <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Xotel Admin Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -56,7 +59,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
+                                <!-- <button class="btn btn-danger" href="{{ url('/') }}">
+                                       Cancel
+                                 </button> -->
+                                 <a class="btn btn-danger"  href="{{ url('/') }}">
+                                        {{ __('Cancel') }}
+                                    </a>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}

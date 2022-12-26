@@ -40,6 +40,8 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {  
+        $this->doLogout($request);
+
         $inputVal = $request->all();
         $this->validate($request, [
             'email' => 'required|email',
@@ -62,6 +64,6 @@ class LoginController extends Controller
 
     public function logout(Request $request) {
         $this->doLogout($request);
-        return redirect('/admin');
+        return redirect('/xotel');
     }
 }
