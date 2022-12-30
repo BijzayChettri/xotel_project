@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@include('layouts.navbar')
+@include('layouts.sidebar')
 @section('content')
 <div class="wrapper">
     <!-- Preloader -->
@@ -84,5 +86,7 @@
 
 
     <!-- /.content-wrapper -->
+    @include('layouts.adminFooter')
 
     @endsection
+    
