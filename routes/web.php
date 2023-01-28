@@ -21,8 +21,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Register Routes
          */
-        // Route::get('/register', 'RegisterController@show')->name('register.show');
-        // Route::post('/register', 'RegisterController@register')->name('register.perform');
+        Route::get('/register', 'RegisterController@show')->name('register.show');
+        Route::post('/register', 'RegisterController@register')->name('register.perform');
 
         /**
          * Login Routes
@@ -33,7 +33,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          * Home Routes
          */
         Route::get('/', 'HomeController@index')->name('home.index');
-        Route::get('/register', 'HomeController@addSpace')->name('register');
+        Route::get('/property-detils/{id}', 'SinglePagePropertyController@index')->name('singleProperty.index');
+        Route::post('/create-booking', 'SinglePagePropertyController@store')->name('singleProperty.store');
+        Route::get('/register-to-xotel', 'HomeController@addSpace')->name('registerToXotel');
+        Route::post('/slef-registration', 'SelfRegistrationController@store')->name('selfRegistartion');
+
         Route::get('/become-host', 'HomeController@becomeHost')->name('become-host');
         Route::get('/about', 'HomeController@about')->name('about');
         Route::get('/contact-us', 'HomeController@contactUs')->name('contact-us');
@@ -58,8 +62,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::any('/amenities-delete/{id}', 'AmenityController@destroy')->name('amenitiesDelete');
 
 
+         /**
+         * Properties Routes
+         */
+        Route::get('/properties', 'PropertyController@index')->name('properties.index');
+        Route::post('/properties', 'PropertyController@store')->name('propertiesSave');
+        Route::get('/properties-edit/{id}', 'PropertyController@edit')->name('propertiesEdit');
+        Route::post('/properties-update', 'PropertyController@update')->name('propertiesUpdate');
+        Route::any('/properties-delete/{id}', 'PropertyController@destroy')->name('propertiesDelete');
+
+        Route::get('/booking-list', 'SinglePagePropertyController@show')->name('singleProperty.show');
+        Route::post('/booking-update', 'SinglePagePropertyController@update')->name('bookingUpdate');
+
+        Route::get('/self-register-leads', 'SelfRegistrationController@show')->name('SelfRegistration.show');
 
 
-
+        
     });
 });

@@ -1,7 +1,8 @@
 @extends('layouts.app-master')
+
+@section('content')
 @include('layouts.partials.sidebar')
 @include('layouts.partials.navbar')
-@section('content')
 <div class="wrapper">
     <!-- Preloader -->
     <!-- <div class="preloader flex-column justify-content-center align-items-center">
@@ -33,8 +34,25 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
+            
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> There were some problems with your input.
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                             <div class="card-header">
-                                <button type="button" class="btn btn-sm btn-success float-right" data-toggle="modal" data-target="#modal-lg">Add Amenities</button>
+                                <button type="button" class="btn btn-sm btn-success float-right" data-toggle="modal" data-target="#modal-lg">Add Amenity</button>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -49,18 +67,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                     @foreach($list as $key=>$value)
-                                        <tr>
-                                            <td>{{$value->id}}</td>
-                                            <td>{{$value->name}}</td>
-                                            
-                                            <td>{{$value->slug}}</td>
-                                            
-                                            <td><a href="" onclick="editAmenity({{$value}})" data-toggle="modal" data-target="#edit-modal-lg"><i class="fa fa-edit"></i> &nbsp;Edit</a>&nbsp;&nbsp;&nbsp
-                                            <a href="{{URL::to('amenities-delete/'. $value->id)}}"><i class="fa fa-trash"></i>&nbsp;Delete</a>
-                                        </td>
-                                        </tr>
-                                    @endforeach
+                                    @isset($list)
+                                        @foreach($list as $key=>$value)
+                                            <tr>
+                                                <td>{{$value->id}}</td>
+                                                <td>{{$value->name}}</td>
+                                                
+                                                <td>{{$value->slug}}</td>
+                                                
+                                                <td><a href="" onclick="editAmenity({{$value}})" data-toggle="modal" data-target="#edit-modal-lg"><i class="fa fa-edit"></i> &nbsp;Edit</a>&nbsp;&nbsp;&nbsp
+                                                <a href="{{URL::to('amenities-delete/'. $value->id)}}"><i class="fa fa-trash"></i>&nbsp;Delete</a>
+                                            </td>
+                                            </tr>
+                                        @endforeach
+                                    @endisset
                                     </tfoot>
                                 </table>
                             </div>
@@ -114,7 +134,7 @@
                     <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h4 class="modal-title">Edit Amenities</h4>
+                        <h4 class="modal-title">Edit Amenity</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -154,14 +174,12 @@
 
 <script>
    function editAmenity(val){
-        console.log(val)
         $('#editname').val(val.name)
         $('#editslug').val(val.slug)
         $('#editid').val(val.id)
     }
 </script>
     <!-- /.content-wrapper -->
-    @include('layouts.partials.adminFooter')
 
     @endsection
     

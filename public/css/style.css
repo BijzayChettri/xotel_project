@@ -4594,7 +4594,7 @@ a.send-btn {
 }
 .sv_single_prop .fixed {
     position: fixed;
-    top: 85px;
+    top: 65px;
     height: 48px;
     z-index: 10;
     background: #fff;width:100%;

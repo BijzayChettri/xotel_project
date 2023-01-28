@@ -12,9 +12,12 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-</div>
+</div>  
+<!-- </div>  -->
+
 <!-- ./wrapper -->
 <script>
+  
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -33,13 +36,14 @@
 </script>
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
+
 <!-- Bootstrap -->
 <script src=" {{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- overlayScrollbars -->
 <script src="{{ asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
-
+<!-- Filterizr-->
 <!-- PAGE PLUGINS -->
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -66,3 +70,5 @@
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('admin/dist/js/pages/dashboard2.js') }}"></script>
+</body>
+</html>

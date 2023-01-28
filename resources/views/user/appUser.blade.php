@@ -48,18 +48,29 @@
     <meta property="og:image" content="">
     <meta name="mobile-web-app-capable" content="yes">
     <!-- <meta name="csrf-token" content="EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr"> -->
-
     <!-- CSS  new version start-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/glyphicon.css') }}" />
+
 
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/vendors/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendors/fontawesome/css/all.min.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link  rel="stylesheet" type="text/css"  href="{{ asset('js/ninja/ninja-slider.min.css')}}" />
+
+        <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
+        <script src="{{ asset('js/main.js') }}"></script> 
+
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('js/ninja/ninja-slider.js') }}"></script> 
+
+
+        <script src="{{ asset('js/slick.js') }}" ></script>
 
     <!-- ------------------------------------------end---------------------- -->
 </head>
@@ -79,31 +90,7 @@ const timeString = moment.utc(moment().endOf('hour').diff()).format('HH:mm:ss')
 document.getElementById('timer').innerHTML = timeString;
 }, 1000);
 </script> -->
-    <style>
-    .svrestore {
-        background: #fff;
-        color: red;
-        font-size: 13px !important;
-        padding: 0px 7px;
-    }
 
-    .sv_demo_mode {
-        background: #ff0000;
-        color: #fff;
-        text-align: center;
-        width: 100%;
-        height: 28px;
-    }
-
-    .header_area {
-        top: 28px;
-    }
-
-    .sv_demo_mode span {
-        font-size: 14px;
-        font-weight: 600;
-    }
-    </style>
     <div id="app">
         <header class="header_area  animated fadeIn homenav">
             <div class="main_menu">
@@ -141,7 +128,7 @@ document.getElementById('timer').innerHTML = timeString;
 				</p>-->
 
 
-                        <form id="front-search-form1" method="post" action=""
+                        <!-- <form id="front-search-form1" method="post" action=""
                             class="mob-search mt-3 mb-3 p-2">
                             <input type="hidden" name="_token" value="EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr">
                             <div class="row">
@@ -152,7 +139,7 @@ document.getElementById('timer').innerHTML = timeString;
                                 <button type="submit" class="btn vbtn-default p-2 ml-5 text-14"><i
                                         class="fa fa-search"></i></button>
                             </div>
-                        </form>
+                        </form> -->
 
 
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
@@ -167,7 +154,7 @@ document.getElementById('timer').innerHTML = timeString;
                                 </div>
                             -->
                                 <div class="nav-item">
-                                    <a class="nav-link p-2 mt-3" href="{{ url('register') }}" aria-label="property-create">
+                                    <a class="nav-link p-2 mt-3" href="{{ url('register-to-xotel') }}" aria-label="property-create">
                                         <button class="btn button vbtn-default text-14 p-0 mt-2 pl-4 pr-4 br-50" >
                                             <p class="p-3 mb-0"> Add your Space</p>
                                         </button>
@@ -227,11 +214,11 @@ document.getElementById('timer').innerHTML = timeString;
 
                     <div class="modal-body p-0">
                         <ul class="mobile-side">
-                            <li><a href="https://demowpthemes.com/buy2rental">Home</a></li>
-                            <li><a href="become-host.html">Become Host</a></li>
-                            <li><a href="help.html">Help</a></li>
-                            <li><a href="signup.html">Sign Up</a></li>
-                            <li><a href="login.html">Log In</a></li>
+                            <li><a href="{{url('/')}}">Home</a></li>
+                            <li><a href="{{url('properties')}}">Become Host</a></li>
+                            <li><a href="{{url('properties')}}">Help</a></li>
+                            <li><a href="{{url('properties')}}">Sign Up</a></li>
+                            <!-- <li><a href="">Log In</a></li> -->
                             <li>
                                 <a href="#" aria-label="modalLanguge" data-toggle="modal"
                                     data-target="#languageModalCenter"> <i class="fa fa-globe"></i> <u>English </u></a>
@@ -239,7 +226,7 @@ document.getElementById('timer').innerHTML = timeString;
                                     data-target="#currencyModalCenter"> <span class="ml-4">&#36; - <u>USD</u>
                                     </span></a>
                             </li>
-                            <a class="mt-3" href="login.html">
+                            <a class="mt-3" href="{{ url('register-to-xotel') }}">
                                 <button class="btn vbtn-outline-success text-14 font-weight-700 pl-5 pr-5 pt-3 pb-3">
                                     Add your Space
                                 </button>

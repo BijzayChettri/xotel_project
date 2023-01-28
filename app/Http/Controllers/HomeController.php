@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Amenity;
+use App\Models\Property;
+use App\Models\PropertyAmenity;
+use App\Models\PropertyImage;
 class HomeController extends Controller
 {
     public function index() 
     {
-        return view('user.home');
+        
+        // $amenity = Amenity::where('status', '=', 0)->get();
+        $properties = Property::with('amenities')->with('images')->where('status', '=', 0)->get();
+        // dd($properties)
+        return view('user.home',['propertyList'=>$properties]);
+
     }
     public function addSpace()
     {

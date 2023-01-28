@@ -14,7 +14,7 @@ class AmenityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show()
-    {
+    {   
         $amenities = Amenity::where('status', '=', 0)->paginate(15);
         return view('admin.amenities',['list'=>$amenities]);
 
@@ -73,7 +73,7 @@ class AmenityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(AmenityRequest $request)
     {
         try{
             $update = Amenity::where('id', $request->id)->update(['name'=>$request->name,'slug'=>$request->slug,'status' => 0]);
@@ -99,7 +99,7 @@ class AmenityController extends Controller
         try{
             $delete = Amenity::where('id', $id)->update(['status' => 1]);
             if($delete){
-                return redirect('/amenities')->with('success', "Amenities successfully created.");
+                return redirect('/amenities')->with('success', "Amenities successfully deleted.");
             }else{
                 return redirect('/amenities')->with('warning', "Something Went Wrong!!");
             }

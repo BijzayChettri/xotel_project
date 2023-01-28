@@ -1,5 +1,6 @@
 @extends('user.appUser')
 @section('content')
+
 <section class="hero-banner magic-ball home">
     <!--Desktop view-->
 
@@ -129,7 +130,7 @@
     <!--Mobile view-->
     <!--Mobile view end-->
 </section>
-<section class="recommandedbg bg-gray mt-4 magic-ball magic-ball-about pb-5">
+<!-- <section class="recommandedbg bg-gray mt-4 magic-ball magic-ball-about pb-5">
     <div class="container-fluid container-fluid-90">
         <div class="row">
             <div class="recommandedhead col-md-12">
@@ -208,48 +209,10 @@
                         <div class="svred text-14">
                             <span class="font-weight-700">&#36; 5 / night </span>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
-            <script>
-            function addthis70(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist70").load(location.href + " .svwishlist70");
-                        document.getElementById('wishlistid70').style.display = 'none';
-                        document.getElementById('closedid70').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis70(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist70").load(location.href + " .svwishlist70");
-                        document.getElementById('wishlistid70').style.display = 'block';
-                        document.getElementById('closedid70').style.display = 'none';
-                    }
-                });
-            }
-            </script>
+            
             <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
                 <div class="card h-100 card-shadow card-1">
                     <div class="">
@@ -1046,7 +1009,7 @@
 
         </div>
     </div>
-</section>
+</section> -->
 
 
 <section class="recommandedbg bg-gray mt-4 magic-ball magic-ball-about pb-5">
@@ -1054,42 +1017,40 @@
         <div class="row">
 
             <div class="recommandedhead col-md-12">
-                <p class="item animated fadeIn text-30 font-weight-700 m-0">Recent Home</p>
+                <p class="item animated fadeIn text-30 font-weight-700 m-0">Best Destinations</p>
             </div>
         </div>
-
         <div class="row mt-3">
-
+            @foreach($propertyList as $item)
             <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
                 <div class="card h-100 card-shadow card-1">
                     <div class="">
-                        <a href="properties/entire-homeapt-in-mangaluru-1.html"
+                        <a href=" {{ route('singleProperty.index', ['id'=>$item->id]) }}"
+
                             aria-label="Entire home/apt in Mangaluru">
                             <figure class="">
-                                <img src="{{ asset('images/property/95/1641553446_grant-durr-ybVhYLhh1wA-unsplash_11zon.jpg') }}"
-                                    class="room-image-container200" alt="Entire home/apt in Mangaluru" />
+                                <img src="{{ asset('images/property/').'/'.$item->images[0]->property_id.'/'.$item->images[0]->url }}"
+                                    class="room-image-container200" alt="{{$item->images[0]->url}}" /> 
                                 <figcaption>
                                 </figcaption>
                             </figure>
                         </a>
                     </div>
-
                     <div class="card-body p-0 pl-1 pr-1">
                         <div class="d-flex">
                             <div class="text">
                                 <a class="text-color text-color-hover"
                                     href="properties/entire-homeapt-in-mangaluru-1.html">
-                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> Entire home/apt in
-                                        Mangaluru </p>
+                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> {{$item->name}} </p>
                                 </a>
                             </div>
                         </div>
 
-                        <div class="wishicon svwishlist95">
+                       <!-- <div class="wishicon svwishlist95">
                             <i class="icon icon-heart-alt b-login" id="wishlistid95"></i>
                         </div>
 
-                        <div>
+                         <div>
                             <ul class="list-inline">
                                 <li class="list-inline-item text-dark">
                                     <div class="vtooltip">
@@ -1109,819 +1070,34 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
 
                         <div class="review-0">
                             <div class="d-flex justify-content-between">
 
                                 <div>
-                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> Mangaluru
+                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> {{$item->address}}
                                     </p>
                                 </div>
 
                                 <div>
                                     <span><i class="fa fa-star text-14 yellow_color"></i>
-                                        0
-                                        (0)</span>
+                                        5
+                                        (5)</span>
                                 </div>
 
                             </div>
                         </div>
 
                         <div class="svred">
-                            <span class="font-weight-700">&#36; 50 / night </span>
+                            <span class="font-weight-700">&#8377; {{$item->price}} / night </span>
                         </div>
 
                     </div>
                 </div>
             </div>
-            <script>
-            function addthis95(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist95").load(location.href + " .svwishlist95");
-                        document.getElementById('wishlistid95').style.display = 'none';
-                        document.getElementById('closedid95').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis95(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist95").load(location.href + " .svwishlist95");
-                        document.getElementById('wishlistid95').style.display = 'block';
-                        document.getElementById('closedid95').style.display = 'none';
-                    }
-                });
-            }
-            </script>
-            <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
-                <div class="card h-100 card-shadow card-1">
-                    <div class="">
-                        <a href="properties/entire-homeapt-in-chennai-3.html" aria-label="Entire home/apt in Chennai">
-                            <figure class="">
-                                <img src="{{ asset('images/property/94/1641448503_relax-area-resort_11zon.jpg') }}"
-                                    class="room-image-container200" alt="Entire home/apt in Chennai" />
-                                <figcaption>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-0 pl-1 pr-1">
-                        <div class="d-flex">
-                            <div class="text">
-                                <a class="text-color text-color-hover"
-                                    href="properties/entire-homeapt-in-chennai-3.html">
-                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> Entire home/apt in
-                                        Chennai </p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="wishicon svwishlist94">
-                            <i class="icon icon-heart-alt b-login" id="wishlistid94"></i>
-                        </div>
-
-                        <div>
-                            <ul class="list-inline">
-                                <li class="list-inline-item text-dark">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Guests</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Bedrooms</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Bathrooms</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="review-0">
-                            <div class="d-flex justify-content-between">
-
-                                <div>
-                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> Chennai</p>
-                                </div>
-
-                                <div>
-                                    <span><i class="fa fa-star text-14 yellow_color"></i>
-                                        0
-                                        (0)</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="svred">
-                            <span class="font-weight-700">&#36; 100 / night </span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <script>
-            function addthis94(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist94").load(location.href + " .svwishlist94");
-                        document.getElementById('wishlistid94').style.display = 'none';
-                        document.getElementById('closedid94').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis94(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist94").load(location.href + " .svwishlist94");
-                        document.getElementById('wishlistid94').style.display = 'block';
-                        document.getElementById('closedid94').style.display = 'none';
-                    }
-                });
-            }
-            </script>
-            <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
-                <div class="card h-100 card-shadow card-1">
-                    <div class="">
-                        <a href="properties/entire-homeapt-in-mysuru-1.html" aria-label="Entire home/apt in Mysuru">
-                            <figure class="">
-                                <img src="{{ asset('images/property/94/1641448503_relax-area-resort_11zon.jpg') }}"
-                                    class="room-image-container200" alt="Entire home/apt in Chennai" />
-                                <figcaption>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-0 pl-1 pr-1">
-                        <div class="d-flex">
-                            <div class="text">
-                                <a class="text-color text-color-hover"
-                                    href="properties/entire-homeapt-in-mysuru-1.html">
-                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> Entire home/apt in
-                                        Mysuru </p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="wishicon svwishlist91">
-                            <i class="icon icon-heart-alt b-login" id="wishlistid91"></i>
-                        </div>
-
-                        <div>
-                            <ul class="list-inline">
-                                <li class="list-inline-item text-dark">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Guests</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Bedrooms</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">1.5 Bathrooms</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="review-0">
-                            <div class="d-flex justify-content-between">
-
-                                <div>
-                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> Mysuru</p>
-                                </div>
-
-                                <div>
-                                    <span><i class="fa fa-star text-14 yellow_color"></i>
-                                        0
-                                        (0)</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="svred">
-                            <span class="font-weight-700">&#36; 50 / night </span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <script>
-            function addthis91(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist91").load(location.href + " .svwishlist91");
-                        document.getElementById('wishlistid91').style.display = 'none';
-                        document.getElementById('closedid91').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis91(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist91").load(location.href + " .svwishlist91");
-                        document.getElementById('wishlistid91').style.display = 'block';
-                        document.getElementById('closedid91').style.display = 'none';
-                    }
-                });
-            }
-            </script>
-            <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
-                <div class="card h-100 card-shadow card-1">
-                    <div class="">
-                        <a href="properties/appartment-in-chennai-1.html" aria-label="Appartment in Chennai">
-                            <figure class="">
-                                <img src="{{ asset('images/property/94/1641448503_relax-area-resort_11zon.jpg') }}"
-                                    class="room-image-container200" alt="Entire home/apt in Chennai" />
-                                <figcaption>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-0 pl-1 pr-1">
-                        <div class="d-flex">
-                            <div class="text">
-                                <a class="text-color text-color-hover" href="properties/appartment-in-chennai-1.html">
-                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> Appartment in Chennai
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="wishicon svwishlist86">
-                            <i class="icon icon-heart-alt b-login" id="wishlistid86"></i>
-                        </div>
-
-                        <div>
-                            <ul class="list-inline">
-                                <li class="list-inline-item text-dark">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Guests</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Bedrooms</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Bathrooms</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="review-0">
-                            <div class="d-flex justify-content-between">
-
-                                <div>
-                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> Avadi</p>
-                                </div>
-
-                                <div>
-                                    <span><i class="fa fa-star text-14 yellow_color"></i>
-                                        0
-                                        (0)</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="svred">
-                            <span class="font-weight-700">&#36; 100 / night </span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <script>
-            function addthis86(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist86").load(location.href + " .svwishlist86");
-                        document.getElementById('wishlistid86').style.display = 'none';
-                        document.getElementById('closedid86').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis86(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist86").load(location.href + " .svwishlist86");
-                        document.getElementById('wishlistid86').style.display = 'block';
-                        document.getElementById('closedid86').style.display = 'none';
-                    }
-                });
-            }
-            </script>
-            <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
-                <div class="card h-100 card-shadow card-1">
-                    <div class="">
-                        <a href="properties/private-room-in-bengaluru.html" aria-label="Private room in Bengaluru">
-                            <figure class="">
-                                <img src="{{ asset('images/property/94/1641448503_relax-area-resort_11zon.jpg') }}"
-                                    class="room-image-container200" alt="Entire home/apt in Chennai" />
-                                <figcaption>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-0 pl-1 pr-1">
-                        <div class="d-flex">
-                            <div class="text">
-                                <a class="text-color text-color-hover" href="properties/private-room-in-bengaluru.html">
-                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> Private room in
-                                        Bengaluru </p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="wishicon svwishlist73">
-                            <i class="icon icon-heart-alt b-login" id="wishlistid73"></i>
-                        </div>
-
-                        <div>
-                            <ul class="list-inline">
-                                <li class="list-inline-item text-dark">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">4 Guests</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Bedrooms</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Bathrooms</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="review-0">
-                            <div class="d-flex justify-content-between">
-
-                                <div>
-                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> Bengaluru
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <span><i class="fa fa-star text-14 yellow_color"></i>
-                                        0
-                                        (0)</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="svred">
-                            <span class="font-weight-700">&#36; 200 / night </span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <script>
-            function addthis73(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist73").load(location.href + " .svwishlist73");
-                        document.getElementById('wishlistid73').style.display = 'none';
-                        document.getElementById('closedid73').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis73(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist73").load(location.href + " .svwishlist73");
-                        document.getElementById('wishlistid73').style.display = 'block';
-                        document.getElementById('closedid73').style.display = 'none';
-                    }
-                });
-            }
-            </script>
-            <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
-                <div class="card h-100 card-shadow card-1">
-                    <div class="">
-                        <a href="properties/single-room-in-chennai-1.html" aria-label="single room in Chennai">
-                            <figure class="">
-                                <img src="{{ asset('images/property/94/1641448503_relax-area-resort_11zon.jpg') }}"
-                                    class="room-image-container200" alt="Entire home/apt in Chennai" />
-                                <figcaption>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-0 pl-1 pr-1">
-                        <div class="d-flex">
-                            <div class="text">
-                                <a class="text-color text-color-hover" href="properties/single-room-in-chennai-1.html">
-                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> single room in Chennai
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="wishicon svwishlist70">
-                            <i class="icon icon-heart-alt b-login" id="wishlistid70"></i>
-                        </div>
-
-                        <div>
-                            <ul class="list-inline">
-                                <li class="list-inline-item text-dark">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">1 Guests</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">1 Bedrooms</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">0.5 Bathrooms</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="review-0">
-                            <div class="d-flex justify-content-between">
-
-                                <div>
-                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> Chennai</p>
-                                </div>
-
-                                <div>
-                                    <span><i class="fa fa-star text-14 yellow_color"></i>
-                                        0
-                                        (0)</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="svred">
-                            <span class="font-weight-700">&#36; 5 / night </span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <script>
-            function addthis70(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist70").load(location.href + " .svwishlist70");
-                        document.getElementById('wishlistid70').style.display = 'none';
-                        document.getElementById('closedid70').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis70(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist70").load(location.href + " .svwishlist70");
-                        document.getElementById('wishlistid70').style.display = 'block';
-                        document.getElementById('closedid70').style.display = 'none';
-                    }
-                });
-            }
-            </script>
-            <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
-                <div class="card h-100 card-shadow card-1">
-                    <div class="">
-                        <a href="properties/home-in-singapore.html" aria-label="Home in  Singapore">
-                            <figure class="">
-                                <img src="{{ asset('images/property/94/1641448503_relax-area-resort_11zon.jpg') }}"
-                                    class="room-image-container200" alt="Entire home/apt in Chennai" />
-                                <figcaption>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-0 pl-1 pr-1">
-                        <div class="d-flex">
-                            <div class="text">
-                                <a class="text-color text-color-hover" href="properties/home-in-singapore.html">
-                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> Home in Singapore </p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="wishicon svwishlist63">
-                            <i class="icon icon-heart-alt b-login" id="wishlistid63"></i>
-                        </div>
-
-                        <div>
-                            <ul class="list-inline">
-                                <li class="list-inline-item text-dark">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">1 Guests</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">1 Bedrooms</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">0.5 Bathrooms</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="review-0">
-                            <div class="d-flex justify-content-between">
-
-                                <div>
-                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> Singapore
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <span><i class="fa fa-star text-14 yellow_color"></i>
-                                        0
-                                        (0)</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="svred">
-                            <span class="font-weight-700">&#36; 25 / night </span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <script>
-            function addthis63(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist63").load(location.href + " .svwishlist63");
-                        document.getElementById('wishlistid63').style.display = 'none';
-                        document.getElementById('closedid63').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis63(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist63").load(location.href + " .svwishlist63");
-                        document.getElementById('wishlistid63').style.display = 'block';
-                        document.getElementById('closedid63').style.display = 'none';
-                    }
-                });
-            }
-            </script>
-            <div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
-                <div class="card h-100 card-shadow card-1">
-                    <div class="">
-                        <a href="properties/single-room-in-budapest-1.html" aria-label="Single room in  Budapest">
-                            <figure class="">
-                                <img src="{{ asset('images/property/94/1641448503_relax-area-resort_11zon.jpg') }}"
-                                    class="room-image-container200" alt="Entire home/apt in Chennai" />
-                                <figcaption>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-0 pl-1 pr-1">
-                        <div class="d-flex">
-                            <div class="text">
-                                <a class="text-color text-color-hover" href="properties/single-room-in-budapest-1.html">
-                                    <p class="text-14 font-weight-700 text margin-bottom-zero"> Single room in Budapest
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="wishicon svwishlist60">
-                            <i class="icon icon-heart-alt b-login" id="wishlistid60"></i>
-                        </div>
-
-                        <div>
-                            <ul class="list-inline">
-                                <li class="list-inline-item text-dark">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Guests</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">2 Bedrooms</span>
-                                    </div>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <div class="vtooltip">
-                                        <span class="text-13 text-muted">1 Bathrooms</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="review-0">
-                            <div class="d-flex justify-content-between">
-
-                                <div>
-                                    <p class="text-13 mt-2 mb-0 text"><i class="fas fa-map-marker-alt"></i> Budapest</p>
-                                </div>
-
-                                <div>
-                                    <span><i class="fa fa-star text-14 yellow_color"></i>
-                                        0
-                                        (0)</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="svred">
-                            <span class="font-weight-700">&#36; 35 / night </span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <script>
-            function addthis60(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlist',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist60").load(location.href + " .svwishlist60");
-                        document.getElementById('wishlistid60').style.display = 'none';
-                        document.getElementById('closedid60').style.display = 'block';
-                    }
-                });
-            }
-            </script>
-
-            <script>
-            function removethis60(id) {
-                $.ajax({
-                    type: 'post',
-                    url: 'https://demowpthemes.com/buy2rental/wishlistremove',
-                    data: {
-                        wishid: id,
-                        '_token': 'EAkjyNL7f9cswZsM7zpd4HZYFXF14YwDW6IPhlYr'
-                    },
-                    success: function(data) {
-                        $(".svwishlist60").load(location.href + " .svwishlist60");
-                        document.getElementById('wishlistid60').style.display = 'block';
-                        document.getElementById('closedid60').style.display = 'none';
-                    }
-                });
-            }
-            </script>
+            @endforeach
+           
 
         </div>
     </div>
@@ -1931,7 +1107,7 @@
     <div class="container-fluid container-fluid-90">
         <div class="row">
             <div class="col-md-12">
-                <p class="item animated fadeIn text-30 font-weight-700 m-0 text-capitalize">Popular Cities</p>
+                <p class="item animated fadeIn text-30 font-weight-700 m-0 text-capitalize">Popular Places</p>
                 <!--<p class="mt-3">Best places where to live in the world and enjoy your trip </p>-->
             </div>
         </div>
@@ -1943,7 +1119,7 @@
                         <figure class="effect-ming">
                             <img src="{{ asset('front/images/starting_cities/starting_city_1.jpg') }}" alt="city" />
                             <figcaption>
-                                <p class="text-15 font-weight-600">New York</p>
+                                <p class="text-15 font-weight-600">Darjeeling</p>
                             </figcaption>
                         </figure>
                     </div>
@@ -1955,7 +1131,7 @@
                         <figure class="effect-ming">
                             <img src="{{ asset('front/images/starting_cities/starting_city_2.jpg') }}" alt="city" />
                             <figcaption>
-                                <p class="text-15 font-weight-600">Sydney</p>
+                                <p class="text-15 font-weight-600">Kalimpong</p>
                             </figcaption>
                         </figure>
                     </div>
@@ -1967,7 +1143,7 @@
                         <figure class="effect-ming">
                             <img src="{{ asset('front/images/starting_cities/starting_city_3.jpg') }}" alt="city" />
                             <figcaption>
-                                <p class="text-15 font-weight-600">Paris</p>
+                                <p class="text-15 font-weight-600">Sikkim</p>
                             </figcaption>
                         </figure>
                     </div>
@@ -1979,13 +1155,13 @@
                         <figure class="effect-ming">
                             <img src="{{ asset('front/images/starting_cities/starting_city_4.jpg') }}" alt="city" />
                             <figcaption>
-                                <p class="text-15 font-weight-600">Barcelona</p>
+                                <p class="text-15 font-weight-600">North East</p>
                             </figcaption>
                         </figure>
                     </div>
                 </a>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 mt-4 col-6 sv-city-pd">
+            <!-- <div class="col-xl-3 col-lg-3 col-md-6 mt-4 col-6 sv-city-pd">
                 <a href="searchb5dc.html?location=Berlin&amp;checkin=&amp;checkout=&amp;guest=1">
                     <div class="grid item animated zoomIn">
                         <figure class="effect-ming">
@@ -2034,7 +1210,7 @@
                         </figure>
                     </div>
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -2043,11 +1219,11 @@
 
 <section class="pb-70 mt-5">
     <div class="container-fluid container-fluid-90">
-        <div class="row tryhosting" style="background:{{ asset('front/images/logos/1635917422_try_hosting_img.jpg') };">
+        <div class="row tryhosting" style="background:{{ asset('front/images/logos/1635917422_try_hosting_img.jpg') }}">
             <div class="col-md-12">
-                <h2 class="font-weight-600 mb-2">Try Hosting</h2>
-                <p class="text-20">Earn money sharing <br> your extra space with travelers</p>
-                <a href="become-host.html"><button class="p-3 rounded-4 border-0 font-weight-500 mt-5">Get
+                <h2 class="font-weight-600 mb-2">Connect with us.</h2>
+                <p class="text-20">Grow your business sharing <br> your extra space with xotel</p>
+                <a href="{{ url('register-to-xotel') }}"><button class="p-3 rounded-4 border-0 font-weight-500 mt-5">Get
                         Started</button></a>
             </div>
         </div>
